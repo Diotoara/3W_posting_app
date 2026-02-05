@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv"
 import cors from "cors"
 import authRouter from "./Routes/authRoutes.js";
+import postRouter from "./Routes/PostRoutes.js";
 import connectDb from "./config/db.js";
 
 dotenv.config();
@@ -11,6 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRouter)
+app.use("/api/posts", postRouter)
 
 const startServer = async() => {
     try {
