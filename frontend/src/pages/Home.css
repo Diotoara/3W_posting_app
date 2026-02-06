@@ -1,0 +1,209 @@
+/* 1. GLOBAL RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f3f4f6;
+  color: #1f2937;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* 2. LAYOUT - Centering the entire feed */
+.feed-container {
+  max-width: 850px; /* Restored to a wider, premium look */
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: #111827;
+  margin-bottom: 30px;
+  text-align: left; /* Aligned with the cards */
+}
+
+/* 3. CREATE POST BOX */
+.create-post {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  margin-bottom: 35px;
+  border: 1px solid #e5e7eb;
+}
+
+.search-input {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: #6366f1;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+/* 4. POST CARD */
+.post-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden; /* Ensures comments/header stay inside the rounded corners */
+}
+
+.post-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.username {
+  font-weight: 800;
+  color: #111827;
+  font-size: 16px;
+}
+
+/* 5. CONTENT AREA */
+.post-content {
+  padding: 0 20px 20px 20px;
+}
+
+.post-text {
+  font-size: 17px;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.post-image-container img {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  display: block;
+}
+
+/* 6. STATS & FOOTER */
+.post-footer {
+  padding: 15px 20px;
+  border-top: 1px solid #f3f4f6;
+  background-color: #ffffff;
+}
+
+.stats {
+  display: flex;
+  gap: 25px;
+}
+
+.stats span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  color: #6b7280;
+  transition: color 0.2s;
+}
+
+.stats span:hover {
+  color: #6366f1;
+}
+
+/* Using CSS content for Icons */
+.stats span:first-child::before { content: "❤️"; }
+.stats span:nth-child(2)::before { content: "💬"; }
+
+/* 7. COMMENTS AREA (Modern Bubble Look) */
+.comments-area {
+  background-color: #f8fafc; /* Subtle contrast from the white card */
+  border-top: 1px solid #e2e8f0;
+  padding: 20px;
+  animation: slideDown 0.3s ease-out;
+}
+
+.comments-title {
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+}
+
+.comment-bubble {
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 12px 16px;
+  border-radius: 18px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.comment-user {
+  font-size: 13px;
+  font-weight: 800;
+  color: #6366f1;
+  margin-bottom: 2px;
+}
+
+.comment-text {
+  font-size: 14px;
+  color: #334155;
+  line-height: 1.4;
+}
+
+.no-comments {
+  font-size: 14px;
+  color: #94a3b8;
+  text-align: center;
+  padding: 10px;
+}
+
+/* 8. ANIMATIONS */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid #6366f1;
+  border-radius: 50%;
+  margin: 20px auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
