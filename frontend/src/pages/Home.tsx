@@ -79,27 +79,31 @@ const handleComment = async (postId: string, text: string) => {
     }
   }
 
-  useEffect(()=>{
-    const loadPost = async() => {
-      try {
-        setLoading(true)
-        const {data} = await getPosts();
-        setPosts(data)
-        const storedProfile = localStorage.getItem("profile");
-        const storedUser = (storedProfile && storedProfile !== "undefined") 
-        ? storedProfile
-        : null;
-      setUser(storedUser);
-      } catch (error) {
-        console.log("fetch failed :",error)
-        
-      } finally{
-        setLoading(false)
-      }
-    }
-    loadPost();
-  },[])
+  useEffect(() => {
+  const loadPost = async () => {
+    try {
+      setLoading(true);
+      const { data } = await getPosts();
+      setPosts(data);
 
+      const storedProfile = localStorage.getItem("profile");
+      const storedId = localStorage.getItem("userId");
+
+      if (storedProfile) {
+        
+        setUser({ 
+          username: storedProfile, 
+          _id: storedId 
+        });
+      }
+    } catch (error) {
+      console.log("fetch failed :", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  loadPost();
+  }, []);
   const toggleComments = (postId :string) => {
     setExpandedPostId(expanderPostId === postId ? null : postId)
   }
@@ -112,12 +116,12 @@ const handleComment = async (postId: string, text: string) => {
       {/* create Post Section */}
       <div 
         className={`create-post ${!user ? "disabled-overlay" : ""}`}
-        onClick={() => !user && alert("Please login to share your thoughts on Aryan Planet!")}
+        onClick={() => !user && alert("Please login to share your thoughts on TASK Universe!")}
       >
         <div className="input-group">
           <textarea 
             className="search-input" 
-            placeholder={user ? "What's on your mind today, Aryan?" : "Please login to post..."}
+            placeholder={user ? `What's on your mind today, ${user.username} ?` : "Please login to post..."}
             value={text}
             onChange={(e) => setText(e.target.value)}
             disabled={!user} // This blocks typing
@@ -188,11 +192,14 @@ const handleComment = async (postId: string, text: string) => {
               )}
 
               <footer className="post-footer">
-                {/* 1. Updated Stats in post-footer */}
                 <div className="stats">
-                  <span onClick={() => handleLike(p._id)}>
+                  <span 
+                    className={`like-btn ${p.likes.includes(user?._id) ? "liked" : ""}`} 
+                    onClick={() => handleLike(p._id)}
+                  >
                     <strong>{p.likes.length}</strong>
                   </span>
+                  
                   <span onClick={() => toggleComments(p._id)}>
                     <strong>{p.comments.length}</strong>
                   </span>

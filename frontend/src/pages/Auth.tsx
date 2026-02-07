@@ -29,7 +29,8 @@ const Auth = () => {
 
                 // Save to localStorage
                 localStorage.setItem("token", data.token);
-                localStorage.setItem("profile", data.username);
+                localStorage.setItem("profile", data.user.username);
+                localStorage.setItem("userId", data.user._id);
 
                 // Redirect home and force a reload to pick up the new token
                 window.location.href = "/";
@@ -43,7 +44,7 @@ const Auth = () => {
     return (
         <div className="auth-container">
             <div className="auth-card">
-                <h1>Aryan Planet</h1>
+                <h1>TASK Universe</h1>
                 <p>{isSignup ? "Create your account" : "Welcome back, explorer"}</p>
                 
                 <form onSubmit={handleSubmit}>

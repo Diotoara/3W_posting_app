@@ -1,0 +1,68 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e5e7eb;
+  padding: 10px 0;
+}
+
+.nav-content {
+  max-width: 850px; /* Matching your feed width */
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.nav-logo {
+  font-size: 22px;
+  font-weight: 900;
+  text-decoration: none;
+  color: #111827;
+}
+
+.nav-logo span {
+  color: #6366f1;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-username {
+  font-weight: 600;
+  font-size: 14px;
+  color: #4b5563;
+  margin-right: 15px;
+}
+
+.nav-btn {
+  padding: 8px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.nav-btn.login {
+  background: #6366f1;
+  color: white;
+}
+
+.nav-btn.logout {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.nav-btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}

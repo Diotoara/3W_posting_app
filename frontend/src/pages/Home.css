@@ -346,3 +346,21 @@ body {
   transform: scale(1.2);
   transition: transform 0.1s;
 }
+
+
+/* Remove the :first-child selector and use this instead */
+.like-btn::before {
+  content: "🤍";
+  margin-right: 5px;
+  filter: grayscale(1);
+  transition: 0.2s;
+}
+
+.like-btn.liked::before {
+  content: "❤️";
+  filter: grayscale(0);
+}
+
+.like-btn.liked strong {
+  color: #ef4444;
+}
