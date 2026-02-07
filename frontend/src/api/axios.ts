@@ -15,7 +15,7 @@ API.interceptors.request.use( (req) => {
 export const signUp = (data:any) => API.post("/auth/register", data)
 export const signIn = (data:any) => API.post("/auth/login", data)
 
-export const getPosts = () => API.get("/posts");
+export const getPosts = (page: number, limit: number) => API.get(`/posts?page=${page}&limit=${limit}`);
 export const createPost = (data:any) => API.post("/posts/create",data);
 export const like = (id:String) => API.patch(`/posts/like/${id}`)
 export const comment = (id:String, text:String) => API.patch(`/posts/comment/${id}`, {text})

@@ -3,12 +3,21 @@ import { Posts } from "../models/Post.js";
 
 export const getAllPost = async(req:Request, res:Response) => {
     try {
-        const allPosts = await Posts.find()
+        const page = parseInt(req.query.page as string) || 1
+        const limit = parseInt(req.query.limit as string) || 5;
+        const skip = (page -1 ) * limit;
+        const posts = await Posts.find()
             .populate("user","username")
             .populate("comments.user","username")
             .sort({ createdAt:-1 })
-        
-        res.status(201).json(allPosts)
+            .skip(skip)
+            .limit(limit)
+        const totalPosts = await Posts.countDocuments();
+        res.status(201).json({
+            posts,
+            currentPage : page,
+            numberOfPages: Math.ceil(totalPosts/limit)
+        });
     } catch (error) {
         console.log("error while fetching allposts", error)
         res.status(500).json({
