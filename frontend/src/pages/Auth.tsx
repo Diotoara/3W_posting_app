@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { signUp, signIn } from "../api/axios";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 
 const Auth = () => {
     const [isSignup, setIsSignup] = useState(false);
     const [formData, setFormData] = useState({ username: "", email: "", password: "" });
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
